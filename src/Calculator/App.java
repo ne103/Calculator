@@ -7,28 +7,43 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         int firstNumber = 0;
+        int secondNumber = 0;
+        char operator = 0;
+
         while (true) {
             System.out.print("첫 번째 양의 정수를 입력하세요: ");
-            int i = sc.nextInt();
+            firstNumber = sc.nextInt();
 
-            if (i < 0) {
+            if (firstNumber < 0) {
                 System.out.println("양의 정수만 입력하세요.");
             } else {
-                firstNumber = i;
                 break;
             }
         }
 
-        int secondNumber = 0;
         while (true) {
             System.out.print("두 번째 양의 정수를 입력하세요: ");
-            int i = sc.nextInt();
+            secondNumber = sc.nextInt();
 
-            if (i < 0) {
+            if (secondNumber < 0) {
                 System.out.println("양의 정수만 입력하세요.");
             } else {
-                secondNumber = i;
                 break;
+            }
+        }
+
+        sc.nextLine();  // nextInt()에 nextLine()이 씹히는 걸 방지
+
+        while (true) {
+            System.out.print("연산자를 입력해주세요: ");
+            String str = sc.nextLine();
+            char c = str.charAt(0);
+
+            if ( c == '+' || c == '-' || c == '*' || c == '/') {
+                operator = c;
+                break;
+            } else {
+                System.out.println("연산자를 제대로 입력하세요.");
             }
         }
     }
