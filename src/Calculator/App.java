@@ -89,7 +89,19 @@ public class App {
                 if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
                     System.out.println("리스트가 비어있습니다.");
                 } else {
-                    resultList.remove(0); // 첫번째 값을 삭제함 -> 다음 인덱스의 값이 첫번째로 이동
+                    resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
+                }
+            }
+
+            System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            if (sc.nextLine().equalsIgnoreCase("inquiry")) {
+                if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
+                    System.out.println("리스트가 비어있습니다.");
+                } else {
+                    for (Double d : resultList) {
+                        System.out.print(d + " ");
+                    }
+                    System.out.println();
                 }
             }
 
