@@ -1,13 +1,13 @@
 package Calculator;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        double[] resultArr = new double[10];
-        int count = 0;
+        List<Double> resultList = new LinkedList<>();
 
         do {
 
@@ -81,19 +81,17 @@ public class App {
             // 정상 케이스일 때 결과 출력
             if (flag) {
                 System.out.println("결과: " + result);
-                resultArr[count] = result;
-                count++;
-
-                if (count > 9) { // 연산 결과가 10개를 초과하는 경우
-
-                    for(int i=0; i < 9; i++) {
-                        resultArr[i] = resultArr[i+1]; // 배열에 저장된 위치를 한칸씩 앞으로 당긴다.
-                    }
-
-                    resultArr[9] = result; // 마지막에 들어온 연산 결과가 마지막 10번째에 저장된다.
-                }
+                resultList.add(result);
             }
 
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            if (sc.nextLine().equalsIgnoreCase("remove")) {
+                if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
+                    System.out.println("리스트가 비어있습니다.");
+                } else {
+                    resultList.remove(0); // 첫번째 값을 삭제함 -> 다음 인덱스의 값이 첫번째로 이동
+                }
+            }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
         } while (!sc.nextLine().equalsIgnoreCase("exit"));  // 최초 한번 실행 후 exit 입력 시 while 탈출
