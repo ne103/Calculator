@@ -83,7 +83,17 @@ public class App {
                 System.out.println("결과: " + result);
                 resultArr[count] = result;
                 count++;
+
+                if (count > 9) { // 연산 결과가 10개를 초과하는 경우
+
+                    for(int i=0; i < 9; i++) {
+                        resultArr[i] = resultArr[i+1]; // 배열에 저장된 위치를 한칸씩 앞으로 당긴다.
+                    }
+
+                    resultArr[9] = result; // 마지막에 들어온 연산 결과가 마지막 10번째에 저장된다.
+                }
             }
+
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
         } while (!sc.nextLine().equalsIgnoreCase("exit"));  // 최초 한번 실행 후 exit 입력 시 while 탈출
