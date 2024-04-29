@@ -6,11 +6,15 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        double[] resultArr = new double[10];
+        int count = 0;
+
         do {
 
             int firstNumber = 0;
             int secondNumber = 0;
             char operator = 0;
+
 
             while (true) {
                 System.out.print("첫 번째 양의 정수를 입력하세요: ");
@@ -77,8 +81,9 @@ public class App {
             // 정상 케이스일 때 결과 출력
             if (flag) {
                 System.out.println("결과: " + result);
+                resultArr[count] = result;
+                count++;
             }
-
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
         } while (!sc.nextLine().equalsIgnoreCase("exit"));  // 최초 한번 실행 후 exit 입력 시 while 탈출
