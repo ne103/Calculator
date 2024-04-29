@@ -46,5 +46,35 @@ public class App {
                 System.out.println("연산자를 제대로 입력하세요.");
             }
         }
+
+        double result = 0;
+        // 오류케이스일 때 결과를 출력하지 않기 위해 선언
+        boolean flag = true;
+
+        switch(operator) {
+            case '+':
+                result = firstNumber + secondNumber;
+                break;
+            case '-':
+                result = firstNumber - secondNumber;
+                break;
+            case '*':
+                result = firstNumber * secondNumber;
+                break;
+            case '/':
+                // 나눗셈 오류 케이스
+                if (firstNumber == 0 || secondNumber == 0) {
+                    System.out.println("나눗셈은 0이 들어갈 수 없습니다.");
+                    flag = false;
+                    break;
+                }
+                // 소숫점까지 출력해주기 위해 double 형변환
+                result = firstNumber / (double)secondNumber;
+                break;
+        }
+        // 정상 케이스일 때 결과 출력
+        if (flag) {
+            System.out.println("결과: " + result);
+        }
     }
 }
