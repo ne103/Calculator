@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Double> resultList = new LinkedList<>();
+
+        Calculator calculator = new Calculator();
 
         do {
 
@@ -55,30 +56,10 @@ public class App {
                     }
                 }
 
-                double result = 0;
-
-                switch (operator) {
-                    case '+':
-                        result = firstNumber + secondNumber;
-                        break;
-                    case '-':
-                        result = firstNumber - secondNumber;
-                        break;
-                    case '*':
-                        result = firstNumber * secondNumber;
-                        break;
-                    case '/':
-                        // 나눗셈 오류 케이스
-                        if (secondNumber == 0) {
-                            throw new BadDivideException();
-                        }
-                        // 소숫점까지 출력해주기 위해 double 형변환
-                        result = firstNumber / (double) secondNumber;
-                        break;
-                }
+                double result = calculator.calculate(firstNumber, secondNumber, operator);
                 // 정상 케이스일 때 결과 출력
                 System.out.println("결과: " + result);
-                resultList.add(result);
+                calculator.resultList.add(result);
             } catch (InputMismatchException e) {
                 System.out.println("예외 발생(InputMismatchException) : 숫자가 아닌 다른 값이 입력되었습니다.");
                 sc.nextLine();
@@ -94,19 +75,19 @@ public class App {
                     System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
 
                     if (sc.nextLine().equalsIgnoreCase("remove")) {
-                        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
+                        if (calculator.resultList.isEmpty()) { // 리스트가 비어있는지 확인
                             throw new BadListException();
                         } else {
-                            resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
+                            calculator.resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
                         }
                     }
 
                     System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                     if (sc.nextLine().equalsIgnoreCase("inquiry")) {
-                        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
+                        if (calculator.resultList.isEmpty()) { // 리스트가 비어있는지 확인
                             throw new BadListException();
                         } else {
-                            for (Double d : resultList) {
+                            for (Double d : calculator.resultList) {
                                 System.out.print(d + " ");
                             }
                             System.out.println();
