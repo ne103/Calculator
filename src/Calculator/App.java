@@ -73,11 +73,7 @@ public class App {
                     System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
 
                     if (sc.nextLine().equalsIgnoreCase("remove")) {
-                        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
-                            throw new BadListException();
-                        } else {
-                            resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
-                        }
+                        calculator.removeResult();
                     }
 
                     System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");

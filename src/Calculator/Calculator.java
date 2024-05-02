@@ -32,12 +32,19 @@ public class Calculator {
         return result;
 
     }
-
     public List<Double> getResultList() {
         return resultList;
     }
 
     public void setResultList(List<Double> resultList) {
         this.resultList = resultList;
+    }
+
+    public void removeResult() throws BadListException {
+        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
+            throw new BadListException();
+        } else {
+            resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
+        }
     }
 }
