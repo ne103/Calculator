@@ -6,6 +6,10 @@ import java.util.List;
 public class Calculator {
     private List<Double> resultList = new LinkedList<>();
 
+    public Calculator(List<Double> resultList) {
+        this.resultList = resultList;
+    }
+
     public double calculate(int firstNumber, int secondNumber, char operator) throws BadDivideException {
         double result = 0;
 
@@ -32,6 +36,7 @@ public class Calculator {
         return result;
 
     }
+
     public List<Double> getResultList() {
         return resultList;
     }

@@ -6,7 +6,7 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Calculator calculator = new Calculator();
+        Calculator calculator = new Calculator(new LinkedList<>());
         List<Double> resultList = calculator.getResultList();   // resultList는 실제로 List<Double>의 주솟값이 저장되어 있기 때문에 값이 추가되어도 calculator 변수에 다시 set 안해줘도 된다.
         do {
 
