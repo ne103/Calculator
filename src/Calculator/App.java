@@ -78,14 +78,7 @@ public class App {
 
                     System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                     if (sc.nextLine().equalsIgnoreCase("inquiry")) {
-                        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
-                            throw new BadListException();
-                        } else {
-                            for (Double d : resultList) {
-                                System.out.print(d + " ");
-                            }
-                            System.out.println();
-                        }
+                        calculator.inquiryResult();
                     }
                 } catch (BadListException e) {
                     System.out.println("예외 발생 : " + e.getMessage());

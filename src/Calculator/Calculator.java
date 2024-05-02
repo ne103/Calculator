@@ -47,4 +47,15 @@ public class Calculator {
             resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
         }
     }
+
+    public void inquiryResult() throws BadListException {
+        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
+            throw new BadListException();
+        } else {
+            for (Double d : resultList) {
+                System.out.print(d + " ");
+            }
+            System.out.println();
+        }
+    }
 }
