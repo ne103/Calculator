@@ -1,21 +1,19 @@
 package Calculator;
 
-import java.util.InputMismatchException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         Calculator calculator = new Calculator();
-
+        List<Double> resultList = calculator.getResultList();   // resultList는 실제로 List<Double>의 주솟값이 저장되어 있기 때문에 값이 추가되어도 calculator 변수에 다시 set 안해줘도 된다.
         do {
 
             int firstNumber = 0;
             int secondNumber = 0;
             char operator = 0;
+
 
             try {
 
@@ -55,11 +53,11 @@ public class App {
                         throw new BadOperatorException();
                     }
                 }
-
                 double result = calculator.calculate(firstNumber, secondNumber, operator);
                 // 정상 케이스일 때 결과 출력
                 System.out.println("결과: " + result);
-                calculator.resultList.add(result);
+
+                resultList.add(result);
             } catch (InputMismatchException e) {
                 System.out.println("예외 발생(InputMismatchException) : 숫자가 아닌 다른 값이 입력되었습니다.");
                 sc.nextLine();
@@ -75,19 +73,19 @@ public class App {
                     System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
 
                     if (sc.nextLine().equalsIgnoreCase("remove")) {
-                        if (calculator.resultList.isEmpty()) { // 리스트가 비어있는지 확인
+                        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
                             throw new BadListException();
                         } else {
-                            calculator.resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
+                            resultList.remove(0); // 0번째 값을 삭제함 -> 다음 인덱스의 값이 0번째로 이동
                         }
                     }
 
                     System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
                     if (sc.nextLine().equalsIgnoreCase("inquiry")) {
-                        if (calculator.resultList.isEmpty()) { // 리스트가 비어있는지 확인
+                        if (resultList.isEmpty()) { // 리스트가 비어있는지 확인
                             throw new BadListException();
                         } else {
-                            for (Double d : calculator.resultList) {
+                            for (Double d : resultList) {
                                 System.out.print(d + " ");
                             }
                             System.out.println();

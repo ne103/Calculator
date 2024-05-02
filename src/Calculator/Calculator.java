@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Calculator {
-    List<Double> resultList = new LinkedList<>();
+    private List<Double> resultList = new LinkedList<>();
 
     public double calculate(int firstNumber, int secondNumber, char operator) throws BadDivideException {
         double result = 0;
@@ -31,5 +31,13 @@ public class Calculator {
 
         return result;
 
+    }
+
+    public List<Double> getResultList() {
+        return resultList;
+    }
+
+    public void setResultList(List<Double> resultList) {
+        this.resultList = resultList;
     }
 }
