@@ -5,9 +5,11 @@ import java.util.List;
 
 public class Calculator {
     private List<Double> resultList = new LinkedList<>();
+    private List<Double> circleResults = new LinkedList<>();
 
-    public Calculator(List<Double> resultList) {
+    public Calculator(List<Double> resultList, List<Double> circleResults) {
         this.resultList = resultList;
+        this.circleResults = circleResults;
     }
 
     public double calculate(int firstNumber, int secondNumber, char operator) throws BadDivideException {
@@ -37,6 +39,19 @@ public class Calculator {
 
     }
 
+    // 원 넓이 구하는 메서드
+    public double calculateCircleArea(int radius) {
+        return 3.14 * radius * radius; // 원 넓이 구하는 식
+    }
+
+    public List<Double> getCircleResults() {
+        return circleResults;
+    }
+
+    public void setCircleResults(List<Double> circleResults) {
+        this.circleResults = circleResults;
+    }
+
     public List<Double> getResultList() {
         return resultList;
     }
@@ -61,6 +76,12 @@ public class Calculator {
                 System.out.print(d + " ");
             }
             System.out.println();
+        }
+    }
+
+    public void inquiryCircleResulth() {
+        for (Double circleResult : circleResults) {
+            System.out.println("원의 넓이 = " + circleResult);
         }
     }
 }

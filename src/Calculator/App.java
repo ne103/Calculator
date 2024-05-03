@@ -6,9 +6,13 @@ public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        Calculator calculator = new Calculator(new LinkedList<>());
+        Calculator calculator = new Calculator(new LinkedList<>(), new LinkedList<>());
         List<Double> resultList = calculator.getResultList();   // resultList는 실제로 List<Double>의 주솟값이 저장되어 있기 때문에 값이 추가되어도 calculator 변수에 다시 set 안해줘도 된다.
         do {
+            System.out.println("어떤 계산을 하실래용~? (1 :  사칙연산 / 2. 원의 넓이)");
+            int choice = sc.nextInt();
+
+            if(choice == 1) {
 
             int firstNumber = 0;
             int secondNumber = 0;
@@ -18,6 +22,7 @@ public class App {
             try {
 
                 while (true) {
+
                     System.out.print("첫 번째 양의 정수를 입력하세요: ");
                     firstNumber = sc.nextInt();
                     if (firstNumber < 0) {
@@ -86,6 +91,15 @@ public class App {
                 finally{
                     System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
                 }
+            }} else {
+                System.out.println("원의 반지름 입력 : ");
+                int radius = sc.nextInt();
+
+                double area = calculator.calculateCircleArea(radius);
+                calculator.getCircleResults().add(area);
+                System.out.println("반지름이 " + radius + "인 원의 넓이는 " + area + " 입니다.");
+                System.out.println("저장된 원의 넓이 전체 조회 : ");
+                calculator.inquiryCircleResulth();
             }
         } while (!sc.nextLine().equalsIgnoreCase("exit"));  // 최초 한번 실행 후 exit 입력 시 while 탈출
     }
